@@ -17,7 +17,7 @@ class MovieManager : MovieService {
     
     init() {}
     
-    func searchMovies(query: String, completion: @escaping (Result<[Movie], CustomError>) -> Void) {
+    func searchMovies(query: String, completion: @escaping (Result<MovieSearchResponse, CustomError>) -> Void) {
         let query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "https://www.omdbapi.com/?s=\(query)&apikey=\(apiKey)"
         
@@ -27,8 +27,8 @@ class MovieManager : MovieService {
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(.decodingError))
+            if error != nil {
+                completion(.failure(.networkError))
                 return
             }
             
@@ -39,10 +39,10 @@ class MovieManager : MovieService {
             
             do {
                 let decoder = JSONDecoder()
-                let response = try decoder.decode(MovieSearchResponse.self, from: data)
-                completion(.success(response.search))
+                let responseMovie = try decoder.decode(MovieSearchResponse.self, from: data)
+                completion(.success(responseMovie))
             } catch {
-                completion(.failure(.networkError))
+                completion(.failure(.decodingError))
             }
         }.resume()
     }
@@ -56,7 +56,7 @@ class MovieManager : MovieService {
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
+            if error != nil {
                 completion(.failure(.decodingError))
                 return
             }

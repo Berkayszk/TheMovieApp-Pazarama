@@ -8,10 +8,15 @@
 import UIKit
 
 class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MovieViewModelOutput {
+    
+
+    
+   
+
  
     var movieViewModel : MovieViewModel?
     let tableView = UITableView()
-    var movies: [Movie] = []
+    var movies: [Movie]? = nil
     let movieManager = MovieManager.shared
     var selectedMovie : Movie?
     
@@ -57,14 +62,14 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
        
     }
     
-    func setSearchMovie(movieList: [Movie]?, error: String?) {
+    func setSearchMovie(movieList: MovieSearchResponse, error: String?) {
         DispatchQueue.main.async {
-            if let movieList = movieList {
-                self.movies = movieList
+            if movieList != nil {
+                self.movies = movieList.search
                 self.tableView.reloadData()
             }
             else{
-                if let error = error {
+                if error != nil {
                     self.tableView.isHidden = true
                     self.errorLabel.text = "No Movie Found!!"
                 }
@@ -72,6 +77,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
           
         }
     }
+    
     //Different solution needed!!
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let query = searchBar.text {
@@ -79,7 +85,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
                 switch result {
                 case .success(let movies):
                     DispatchQueue.main.async {
-                        self.movies = movies
+                        self.movies = movies.search
                         self.tableView.reloadData()
                         self.tableView.isHidden = false
                         self.errorLabel.isHidden = true
@@ -160,15 +166,15 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return movies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieTableViewCell
-        let movie = movies[indexPath.row]
-        cell.mainImageView.downloaded(from: movie.Poster ?? Constants.noImageUrl)
-        cell.nameLabel.text = movie.Title
-        cell.yearLabel.text = movie.Year
+        let movie = movies?[indexPath.row]
+        cell.mainImageView.downloaded(from: movie?.Poster ?? Constants.noImageUrl)
+        cell.nameLabel.text = movie?.Title
+        cell.yearLabel.text = movie?.Year
         return cell
     }
     
@@ -177,7 +183,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMovie = movies[indexPath.row]
+        selectedMovie = movies?[indexPath.row]
         
         let webService : MovieService = MovieManager()
         let detailViewModel = DetailViewModel(webService: webService)

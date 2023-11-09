@@ -31,20 +31,20 @@ class MovieViewModel {
      */
     func fetchMovieSearchs(movieName: String){
         webService?.searchMovies(query: movieName, completion: { result in
-            DispatchQueue.main.async(){
+            DispatchQueue.main.async {
                 switch result {
                 case .success(let movie):
                     self.movieOutput?.setSearchMovie(movieList: movie, error: nil)
                 case .failure(let customError):
                     switch customError{
                     case .decodingError:
-                        self.movieOutput?.setSearchMovie(movieList: nil, error: "Decoding error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Decoding error.")
                     case .networkError:
-                        self.movieOutput?.setSearchMovie(movieList: nil, error: "Network error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Network error.")
                     case .serverError:
-                        self.movieOutput?.setSearchMovie(movieList: nil, error: "Server error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Server error.")
                     case .urlError:
-                        self.movieOutput?.setSearchMovie(movieList: nil, error: "Url error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Url error.")
                     }
                 }
             }

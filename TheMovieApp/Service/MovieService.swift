@@ -8,6 +8,6 @@
 import Foundation
 protocol MovieService {
     
-    func searchMovies(query: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
+    func searchMovies(query: String, completion: @escaping (Result<MovieSearchResponse, CustomError>) -> Void)
     func getMovieDetails(imdbID: String, completion: @escaping (Result<Movie, CustomError>) -> Void)
 }
