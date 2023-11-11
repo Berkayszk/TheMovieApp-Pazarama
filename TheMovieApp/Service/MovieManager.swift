@@ -40,7 +40,8 @@ class MovieManager : MovieService {
             do {
                 let decoder = JSONDecoder()
                 let responseMovie = try decoder.decode(MovieSearchResponse.self, from: data)
-                completion(.success(responseMovie))
+                    completion(.success(responseMovie))
+                
             } catch {
                 completion(.failure(.decodingError))
             }

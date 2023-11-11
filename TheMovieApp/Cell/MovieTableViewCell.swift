@@ -8,7 +8,6 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-
     
     let mainImageView : UIImageView = {
          let imageView = UIImageView()

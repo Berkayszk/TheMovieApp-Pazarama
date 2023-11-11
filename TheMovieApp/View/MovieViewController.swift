@@ -8,11 +8,6 @@
 import UIKit
 
 class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MovieViewModelOutput {
-    
-
-    
-   
-
  
     var movieViewModel : MovieViewModel?
     let tableView = UITableView()
@@ -62,21 +57,22 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
        
     }
     
-    func setSearchMovie(movieList: MovieSearchResponse, error: String?) {
-        DispatchQueue.main.async {
-            if movieList != nil {
-                self.movies = movieList.search
-                self.tableView.reloadData()
-            }
-            else{
-                if error != nil {
-                    self.tableView.isHidden = true
-                    self.errorLabel.text = "No Movie Found!!"
+    func setSearchMovie(movieList: MovieSearchResponse) {
+         let query = "Avengers"
+            movieManager.searchMovies(query: query) { result in
+                switch result {
+                case .success(let movies):
+                    DispatchQueue.main.async {
+                        self.movies = movieList.search
+                        self.tableView.reloadData()
+                    }
+                case .failure(_):
+                    print("Hata")
                 }
+               
             }
-          
+            
         }
-    }
     
     //Different solution needed!!
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

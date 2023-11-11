@@ -32,7 +32,7 @@ struct Movie: Codable {
 struct MovieSearchResponse: Codable {
     let search: [Movie]
     
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case search = "Search"
     }
 }
