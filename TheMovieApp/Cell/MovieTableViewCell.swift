@@ -56,6 +56,22 @@ class MovieTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    let bookmarkImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .black
+        imageView.image = UIImage(systemName: "bookmark")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let selectMovie : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.tintColor = .black
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     
     
@@ -70,6 +86,8 @@ class MovieTableViewCell: UITableViewCell {
         addSubview(nameLabel)
         addSubview(yearLabel)
         addSubview(mainImageView)
+        addSubview(bookmarkImage)
+        addSubview(selectMovie)
            
            NSLayoutConstraint.activate([
           
@@ -88,7 +106,15 @@ class MovieTableViewCell: UITableViewCell {
            yearLabel.rightAnchor.constraint(equalTo: rightAnchor),
            yearLabel.leftAnchor.constraint(equalTo: mainImageView.leftAnchor, constant: 140),
            yearLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-           yearLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor)
+           yearLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
+           
+           selectMovie.rightAnchor.constraint(equalTo: rightAnchor),
+           selectMovie.leftAnchor.constraint(equalTo: mainImageView.rightAnchor, constant: 200),
+           selectMovie.topAnchor.constraint(equalTo: yearLabel.bottomAnchor, constant: 30),
+           
+           bookmarkImage.rightAnchor.constraint(equalTo: rightAnchor),
+           bookmarkImage.leftAnchor.constraint(equalTo: mainImageView.rightAnchor, constant: 210),
+           bookmarkImage.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: 5),
 
        ])
            
