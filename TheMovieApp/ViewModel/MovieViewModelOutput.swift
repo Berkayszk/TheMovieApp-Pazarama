@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MovieViewModelOutput : AnyObject {
-    func setSearchMovie(movieList: MovieSearchResponse)
+    func setSearchMovie(movieList: MovieSearchResponse, error: String?)
 }

@@ -21,17 +21,17 @@ class MovieViewModel {
         
                 switch result {
                 case .success(let movieResult):
-                    self.movieOutput?.setSearchMovie(movieList: movieResult)
+                    self.movieOutput?.setSearchMovie(movieList: movieResult, error: nil)
                 case .failure(let customError):
                     switch customError{
                     case .decodingError:
-                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []))//, error: "Decoding error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Decoding error.")
                     case .networkError:
-                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []))//, error: "Network error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Network error.")
                     case .serverError:
-                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []))//, error: "Server error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Server error.")
                     case .urlError:
-                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []))//, error: "Url error.")
+                        self.movieOutput?.setSearchMovie(movieList: MovieSearchResponse(search: []), error: "Url error.")
                     }
                 }
             

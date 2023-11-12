@@ -8,6 +8,8 @@
 import UIKit
 
 class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MovieViewModelOutput {
+    
+    
  
     var movieViewModel : MovieViewModel?
     let tableView = UITableView()
@@ -56,8 +58,8 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         setupView()
        
     }
-    
-    func setSearchMovie(movieList: MovieSearchResponse) {
+    //Delegate
+    func setSearchMovie(movieList: MovieSearchResponse, error: String?) {
          let query = "Avengers"
             movieManager.searchMovies(query: query) { result in
                 switch result {
@@ -66,8 +68,8 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
                         self.movies = movieList.search
                         self.tableView.reloadData()
                     }
-                case .failure(_):
-                    print("Hata")
+                case .failure(let error):
+                    print("Hata Main")
                 }
                
             }
