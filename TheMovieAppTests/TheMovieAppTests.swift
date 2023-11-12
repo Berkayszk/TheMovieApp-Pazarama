@@ -40,7 +40,11 @@ final class TheMovieAppTests: XCTestCase {
     func testSearchMovie_whenAPISuccess_showsMovie() throws{
         
         let mockMovieResult = MovieSearchResponse(search: [Movie(Poster: "www", Title: "Blender", Year: "2012", Rated: "123", Released: "1234", Runtime: "111", Genre: "Sci-Fi", Director: "berk berk", Language: "English", Country: "USA", BoxOffice: "12323", Metascore: "123321", imdbRating: "21332", imdbVotes: "123213", imdbID: "1", Plot: "234")])
-    
+        
+        movieService.fetchMovieMockResult = .success(mockMovieResult)
+        
+        movieViewModel.fetchMovieSearchs(movieName: "Batman")
+    /*
         movieService.fetchMovieMockResult = .success(mockMovieResult)
         print(mockMovieResult)
       
@@ -50,9 +54,13 @@ final class TheMovieAppTests: XCTestCase {
         print(movieOutput.searchMovie?.search[0].Title)
         
         print(movieOutput.searchMovie?.search[0].Title ?? "Nil Geliyor")
+   
+        XCTAssertEqual(movieOutput.searchMovie.search[0].Title, "Blender")
+     */
         XCTAssertEqual(movieOutput.searchMovie?.search[0].Title, "Blender")
         
     }
+    
     func testFetchMovieDetail_whenAPISuccess_showsMovieDetail() throws{
         let mockMovieDetails = Movie(Poster: "www", Title: "Avengers", Year: "2014", Rated: "", Released: "", Runtime: "", Genre: "", Director: "", Language: "", Country: "", BoxOffice: "", Metascore: "", imdbRating: "", imdbVotes: "", imdbID: "", Plot: "")
         
@@ -87,7 +95,7 @@ class MockMovieService : MovieService {
     }
 }
 class MockMovieViewModelOutput : MovieViewModelOutput {
-    var searchMovie : MovieSearchResponse?
+    var searchMovie : MovieSearchResponse!
     func setSearchMovie(movieList: MovieSearchResponse) {
         print("output giriş")
         print(movieList)
