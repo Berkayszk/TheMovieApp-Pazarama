@@ -166,6 +166,93 @@ class MovieDetailViewController: UIViewController, DetailViewModelOutput {
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
+    let summaryText : UILabel = {
+        let title = UILabel()
+        title.text = "Summary:"
+        title.textColor = .black
+        title.font = .systemFont(ofSize: 13)
+        title.font = .boldSystemFont(ofSize: 14)
+        title.textAlignment = .center
+        title.numberOfLines = 0
+        title.translatesAutoresizingMaskIntoConstraints = false
+        return title
+    }()
+    let genreImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "books.vertical.fill")
+        imageView.tintColor = .systemBrown
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let countryImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "globe.europe.africa.fill")
+        imageView.tintColor = .systemBlue
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let languageImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "textformat.abc.dottedunderline")
+        imageView.tintColor = .systemBlue
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let personImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "person.3.fill")
+        imageView.tintColor = .systemGray
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let dollarImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "dollarsign")
+        imageView.tintColor = .systemGreen
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let metascoreImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "theatermasks")
+        imageView.tintColor = .systemGray
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let imadbImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "cellularbars")
+        imageView.tintColor = .systemGray
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let calanderImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "calendar")
+        imageView.tintColor = .systemRed
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    let accessibilityImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "accessibility")
+        imageView.tintColor = .black
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    
+    
+    
     
     init(detailViewModel: DetailViewModel) {
         self.detailViewModel = detailViewModel
@@ -263,6 +350,16 @@ class MovieDetailViewController: UIViewController, DetailViewModelOutput {
         view.addSubview(boxOfficeLabel)
         view.addSubview(metaScore)
         view.addSubview(imdbVotes)
+        view.addSubview(summaryText)
+        view.addSubview(genreImage)
+        view.addSubview(personImage)
+        view.addSubview(languageImage)
+        view.addSubview(countryImage)
+        view.addSubview(imadbImage)
+        view.addSubview(metascoreImage)
+        view.addSubview(dollarImage)
+        view.addSubview(accessibilityImage)
+        view.addSubview(calanderImage)
         
         NSLayoutConstraint.activate([
                 
@@ -283,6 +380,9 @@ class MovieDetailViewController: UIViewController, DetailViewModelOutput {
             
             yearLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 13),
             yearLabel.leftAnchor.constraint(equalTo: imdbTitle.rightAnchor, constant: 50),
+            
+            summaryText.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 13),
+            summaryText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
                         
             detailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30),
             detailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -291,6 +391,12 @@ class MovieDetailViewController: UIViewController, DetailViewModelOutput {
             imdbTitle.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 13),
             imdbTitle.leftAnchor.constraint(equalTo: imdbStar.rightAnchor, constant: 5),
   
+            
+            accessibilityImage.topAnchor.constraint(equalTo: imdbStar.topAnchor, constant: 37),
+            accessibilityImage.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 70),
+            
+            calanderImage.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 10),
+            calanderImage.leftAnchor.constraint(equalTo: ratedLabel.leftAnchor, constant: 5),
                         
             imdbStar.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 10),
             imdbStar.leftAnchor.constraint(equalTo: titleImageView.rightAnchor, constant: 40),
@@ -298,27 +404,48 @@ class MovieDetailViewController: UIViewController, DetailViewModelOutput {
             ratedLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 50),
             ratedLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -90),
             
-            genreLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 20),
-            genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            genreImage.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 20),
+            genreImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             
-            countryLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 20),
-            countryLabel.leftAnchor.constraint(equalTo: genreLabel.rightAnchor, constant: 15),
+            genreLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 25),
+            genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40),
             
+            countryImage.topAnchor.constraint(equalTo: genreImage.bottomAnchor, constant: 20),
+            countryImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             
-            languageLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 20),
-            languageLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            countryLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 23),
+            countryLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35),
+            
+            languageImage.topAnchor.constraint(equalTo: countryImage.bottomAnchor, constant: 20),
+            languageImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            
+            languageLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor, constant: 23),
+            languageLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 42),
+            
+            personImage.topAnchor.constraint(equalTo: languageImage.bottomAnchor, constant: 15),
+            personImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             
             directorLabel.topAnchor.constraint(equalTo: languageLabel.bottomAnchor, constant: 20),
-            directorLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            directorLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
+            
+            dollarImage.topAnchor.constraint(equalTo: personImage.bottomAnchor, constant: 15),
+            dollarImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
             
             boxOfficeLabel.topAnchor.constraint(equalTo: directorLabel.bottomAnchor, constant: 20),
-            boxOfficeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            boxOfficeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35),
             
-            metaScore.topAnchor.constraint(equalTo: directorLabel.bottomAnchor, constant: 20),
-            metaScore.leftAnchor.constraint(equalTo: boxOfficeLabel.rightAnchor, constant: 110),
+            metascoreImage.topAnchor.constraint(equalTo: dollarImage.bottomAnchor, constant: 15),
+            metascoreImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             
-            imdbVotes.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 200),
-            imdbVotes.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            metaScore.topAnchor.constraint(equalTo: boxOfficeLabel.bottomAnchor, constant: 20),
+            metaScore.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
+            
+            imadbImage.topAnchor.constraint(equalTo: boxOfficeLabel.bottomAnchor, constant: 17),
+            imadbImage.leftAnchor.constraint(equalTo: metaScore.rightAnchor, constant: 40),
+            
+            imdbVotes.topAnchor.constraint(equalTo: boxOfficeLabel.bottomAnchor, constant: 20),
+            imdbVotes.leftAnchor.constraint(equalTo: imadbImage.rightAnchor, constant: 5)
+            
           
         ])
         
