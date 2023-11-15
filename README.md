@@ -18,10 +18,11 @@
 
 
 
+
 ## Screenshots
 | MainScreen | DetailScreen | Search | No Result |
 | ----------- | ----------- | ----------- | ---------- |
-| <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/dafb6222-cb7a-4a9f-9f55-2a9bfe6418a2"> | <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/36d930e8-5734-40ea-8ed8-a9d5042cf29a"> | <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/c7cf2d0b-4d78-4922-8f5f-2080275e144d"> | <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/5e11fe92-21c2-427f-bca0-744c7168b346"> | 
+| <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/dafb6222-cb7a-4a9f-9f55-2a9bfe6418a2"> | <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/9caff0c1-9d2d-4511-8e60-79dcb3131fe8"> | <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/c7cf2d0b-4d78-4922-8f5f-2080275e144d"> | <img width="250px" src="https://github.com/Berkayszk/TheMovieApp-Pazarama/assets/77547509/5e11fe92-21c2-427f-bca0-744c7168b346"> | 
 
 | Video |
 | ----------- |
